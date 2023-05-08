@@ -47,3 +47,70 @@ let Array2 = ['blanco', 'negro', 'rojo'];
 function compararArrays(Array1, Array2) {
   return Array1.filter(element => Array2.includes(element));
 }
+
+/*
+3)
+3.1) Dado el siguiente objeto
+let carrito = {
+    montoTotal: 10,
+    productos: ["Leche"]
+}
+
+Crear las clases necesarias para generar carritos respetando la estructura del objeto dado.
+
+3.2) Agregar un metodo a la clase que agregue un producto al carrito y actualice el montoTotal
+agregarProducto(nombre, precio, unidades) {
+    // Completar aca...
+}
+
+
+Ej:
+agregarProducto("Azucar", 5, 2);
+
+//Resultado esperado
+carrito = {
+    montoTotal: 20,
+    productos: ["Leche", "Azucar"]
+}
+*/
+
+//Para ver resultado en consola, presione la flecha que aparece a la izquierda de >ShopCart
+class ShopCart {
+  constructor() {
+    this.montoTotal = 0;
+    this.productos = [];
+  }
+
+  agregarProducto(nombre, precio, unidades) {
+    this.montoTotal += precio * unidades;
+    this.productos.push(nombre);
+  }
+}
+
+let carrito = new ShopCart();
+carrito.agregarProducto("Leche", 10, 1);
+carrito.agregarProducto("Azucar", 5, 2);
+
+console.log(carrito);
+
+
+/*.
+3.3)Agregar al ejercicio anterior una validación para no permitir duplicados e imprimir un mensaje si el item ya existe “ya existe xxx con yyy unidades”
+*/
+
+let items = [
+  { nombre: "item1", unidad: 10 },
+  { nombre: "item2", unidad: 20 },
+  { nombre: "item3", unidad: 30 },
+];
+
+function agregarItem(nombre, unidad) {
+  if (items.some((item) => item.nombre === nombre)) {
+    alert(`Ya existe ${nombre} con ${unidad} unidades`);
+    return;
+  }
+  items.push({ nombre, unidad });
+}
+
+agregarItem("item1", 10); // Ya existe item1 con 10 unidades
+agregarItem("item4", 40); // Agrega {nombre: "item4", unidad: 40} al array items
